@@ -1,0 +1,102 @@
+@keyframes motion-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes motion-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes hero-background-in {
+  from { opacity: .7; transform: scale(1.12); }
+  to { opacity: 1; transform: translate3d(0, var(--hero-parallax-y, 0), 0) scale(1.08); }
+}
+@keyframes lightbox-image-in {
+  from { opacity: .55; transform: scale(.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes button-loading {
+  to { transform: rotate(360deg); }
+}
+
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--motion-duration-reveal) var(--motion-ease-out),
+    transform var(--motion-duration-reveal) var(--motion-ease-out);
+  transition-delay: calc(var(--reveal-order, 0) * var(--motion-stagger));
+}
+.motion-ready [data-reveal="fade"] { transform: none; }
+.motion-ready [data-reveal].revealed { opacity: 1; transform: none; }
+.motion-ready .home-hero-image { animation: hero-background-in 1.6s var(--motion-ease-out) both; }
+.hero-content > .eyebrow,
+.hero-content > h1,
+.hero-content > p,
+.hero-content > .hero-actions,
+.hero-content > .hero-note,
+.page-hero .container {
+  animation: motion-rise var(--motion-duration-enter) var(--motion-ease-out) both;
+}
+.hero-content > h1 { animation-delay: 90ms; }
+.hero-content > p { animation-delay: 170ms; }
+.hero-content > .hero-actions { animation-delay: 250ms; }
+.hero-content > .hero-note { animation-delay: 330ms; }
+.hero-actions .btn > span { display: inline-block; transition: transform var(--transition-base); }
+.hero-actions .btn:hover > span { transform: translate(-2px, -2px); }
+
+.lightbox.is-loading::after {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border-on-dark);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  content: "";
+  animation: button-loading 700ms linear infinite;
+}
+.lightbox img.is-changing { animation: lightbox-image-in 360ms var(--motion-ease-out) both; }
+
+.btn.is-loading,
+.btn[aria-busy="true"] { position: relative; color: transparent !important; pointer-events: none; }
+.btn.is-loading::after,
+.btn[aria-busy="true"]::after {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--spinner-track);
+  border-top-color: var(--spinner-color, var(--color-primary));
+  border-radius: 50%;
+  content: "";
+  animation: button-loading 700ms linear infinite;
+}
+.btn-dark { --spinner-color: var(--on-primary); --spinner-track: var(--border-on-dark); }
+
+::view-transition-old(root) { animation: motion-fade 140ms reverse both; }
+::view-transition-new(root) { animation: motion-fade 220ms ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; }
+  .motion-ready [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .main-nav { transition: none !important; }
+  .room-card,
+  .room-card:hover,
+  .room-card:focus-within,
+  .room-card:active,
+  .editorial-card:hover img,
+  .gallery-item:hover img,
+  .feature-card:hover .icon,
+  .header-action:hover,
+  .card-link:hover { transform: none !important; }
+  .room-card::after { opacity: 0 !important; }
+  .home-hero-image { transform: translate3d(0, 0, 0) scale(1.08) !important; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+}
+
+@media (max-width: 760px), (hover: none) {
+  .home-hero-image { animation: hero-background-in 1.2s var(--motion-ease-out) both; transform: translate3d(0, 0, 0) scale(1.08); }
+  .room-card,
+  .room-card:hover,
+  .room-card:focus-within { transform: none; }
+  .room-card::after { display: none; }
+}

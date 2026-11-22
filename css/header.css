@@ -1,0 +1,22 @@
+.site-header { position: absolute; z-index: 30; inset: 0 0 auto; color: var(--on-dark); }
+.site-header.is-sticky { position: fixed; background: var(--surface-nav); backdrop-filter: blur(14px); box-shadow: var(--shadow-md); }
+.header-inner { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: var(--space-6); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
+.brand-mark { display: block; width: 40px; height: 40px; flex: 0 0 40px; background: transparent; }
+.brand-copy { display: grid; line-height: var(--line-heading); }
+.brand-copy strong { font-family: var(--font-en); font-size: var(--text-sm); letter-spacing: .16em; }
+.brand-copy small { margin-top: var(--space-1); font-size: var(--text-xs); letter-spacing: .025em; opacity: .84; }
+.main-nav { display: flex; align-items: center; gap: clamp(var(--space-3), 2vw, var(--space-6)); }
+.main-nav a { position: relative; padding-block: var(--space-2); color: var(--on-dark-muted); font-size: clamp(var(--text-xs), .9vw, var(--text-sm)); white-space: nowrap; }
+.main-nav a::after { position: absolute; inset: auto 0 0; height: 1px; background: var(--color-accent); content: ""; transform: scaleX(0); transform-origin: right; transition: transform var(--transition-fast); }
+[dir="ltr"] .main-nav a::after { transform-origin: left; }
+.main-nav a:hover::after, .main-nav a[aria-current="page"]::after { transform: scaleX(1); }
+.header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.header-action { display: grid; width: 2.375rem; height: 2.375rem; place-items: center; padding: 0; border: 1px solid var(--border-on-dark); border-radius: var(--radius-circle); background: transparent; color: var(--on-dark); font-size: var(--text-xs); transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast); }
+.header-action:hover { border-color: var(--color-accent); color: var(--color-accent); transform: translateY(-1px); }
+.header-action:active { transform: scale(.96); }
+.header-book { min-height: 40px; padding-inline: 17px; }
+.menu-toggle { display: none; }
+
+/* Sticky header — fix content overlap when the header sticks (إصلاح تداخل الشريط العلوي) */
+body.is-sticky-header { padding-top: var(--header-height); transition: padding-top var(--transition-fast); }

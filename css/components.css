@@ -1,0 +1,12 @@
+.tag { display: inline-flex; align-items: center; padding: var(--space-1) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-pill); color: var(--color-secondary); font-size: var(--text-xs); }
+.check-list { display: grid; gap: var(--space-3); padding: 0; list-style: none; }
+.check-list li::before { margin-inline-end: var(--space-3); color: var(--color-accent); content: "✦"; }
+.card-link { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-secondary); font-size: var(--text-sm); font-weight: var(--weight-bold); transition: color var(--transition-fast), gap var(--transition-fast), transform var(--transition-fast); }
+.card-link:hover { gap: var(--space-3); color: var(--color-secondary); transform: translateY(-1px); }
+.image-caption { position: absolute; inset: auto 0 0; padding: var(--space-6) var(--space-4) var(--space-3); background: linear-gradient(transparent, var(--overlay-image)); color: var(--on-dark); font-size: var(--text-sm); text-align: start; }
+.newsletter { display: flex; gap: var(--space-2); margin-top: var(--space-4); }
+.newsletter input { min-width: 0; width: 100%; min-height: var(--control-height); padding: var(--space-2) var(--space-3); border: 1px solid var(--border-on-footer); border-radius: var(--radius-md); background: var(--surface-on-dark); color: var(--on-dark); }
+.newsletter button { min-width: var(--control-height); min-height: var(--control-height); padding: var(--space-2) var(--space-3); border: 0; border-radius: var(--radius-md); background: var(--color-accent); color: var(--color-primary); transition: background var(--transition-fast), transform var(--transition-fast); }
+.newsletter button:hover { background: var(--color-accent-hover); }
+.newsletter button:active { transform: scale(.96); }
+.rating { color: var(--color-accent); font-size: var(--text-sm); }
